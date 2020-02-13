@@ -30,13 +30,16 @@
         <% @tag.each do |y|%>
     <span class="badge badge-primary"> <%= y.title%></span>
       <%end%>
-      <p><%= @like.count%></p>
-      <% if @like.find_by(user_id: current_user.id)%>
-            <%= link_to "",   gossip_like_path(params[:id], @like.find_by(user_id: current_user.id).id) ,method: "DELETE",class: "fas fa-heart", style: "color: black;text-decoration: none;"%>
-        <% else %>
-            <%= link_to "",   gossip_like_index_path(params[:id]) ,method: "POST",class: "far fa-heart", style: "color: black;text-decoration: none;"%>
-
-      <% end %>
+          <%= @gossip.likes.count %>
+            <%if current_user %>
+              <% if @gossip.likes.map{|like| like.user_id == current_user.id ? like : nil}.compact == [] %>
+                <%= link_to "", gossip_like_index_path(@gossip.id), class:"far fa-heart mx-1 my-1", data:{method:"POST"}, style: "color: black;text-decoration: none;" %>
+              <%else%>
+                <%= link_to "", gossip_like_path(@gossip.id, current_user.id), class:"fas fa-heart mx-1 my-1", data:{method:"DELETE"}, style: "color: black;text-decoration: none;" %>
+              <%end%>
+            <%else%>
+              <%= link_to "", gossip_like_index_path(@gossip.id), class:"far fa-heart mx-1 my-1", data:{method:"POST"}, style: "color: black;text-decoration: none;" %>
+            <%end%>
   </div>
 </div>
  

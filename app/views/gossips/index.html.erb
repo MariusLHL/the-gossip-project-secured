@@ -32,13 +32,22 @@
     <div class="card-body">
     <h5 class="card-title"><%= t.title %></h5>
     <p class="card-text"><%= t.content %></p>
-    <p class="card-text"><small class="text-muted"><%= User.find(t.user_id).first_name %> <%= User.find(t.user_id).last_name %></small></p>
-     <%= link_to "clique ici pour acceder au gossip", Gossip.find(t.id), class: "card_link text-right"%>
+    <p class="card-text"><small class="text-muted"><%= current_user.first_name %> <%= User.find(t.user_id).last_name %></small></p>
+     <%= link_to "clique ici pour acceder au gossip", gossip_path(t.id), class: "card_link text-right"%>
      <% t.tag.each do |e|%>
      <a href="#" class="badge badge-primary"><%= e.title%></a>
      <% end %>
-      <%= t.likes.count%>
 
+          <%= t.likes.count %>
+            <%if current_user %>
+              <% if t.likes.map{|like| like.user_id == current_user.id ? like : nil}.compact == [] %>
+                <%= link_to "", gossip_like_index_path(t.id), class:"far fa-heart mx-1 my-1", data:{method:"POST"}, style: "color: black;text-decoration: none;" %>
+              <%else%>
+                <%= link_to "", gossip_like_path(t.id, current_user.id), class:"fas fa-heart mx-1 my-1", data:{method:"DELETE"}, style: "color: black;text-decoration: none;" %>
+              <%end%>
+            <%else%>
+              <%= link_to "", gossip_like_index_path(t.id), class:"far fa-heart mx-1 my-1", data:{method:"POST"}, style: "color: black;text-decoration: none;" %>
+            <%end%>
     </div>
 
     </div>

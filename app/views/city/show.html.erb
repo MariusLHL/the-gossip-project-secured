@@ -5,8 +5,22 @@
     <div class="card-body">
     <h5 class="card-title"><%= t.title %></h5>
     <p class="card-text"><%= t.content %></p>
+      <% if current_user%>
+          <%= t.likes.count %>
+            <%if current_user %>
+              <% if t.likes.map{|like| like.user_id == current_user.id ? like : nil}.compact == [] %>
+                <%= link_to "", gossip_like_index_path(t.id), class:"far fa-heart mx-1 my-1", data:{method:"POST"} %>
+              <%else%>
+                <%= link_to "", gossip_like_path(t.id, current_user.id), class:"fas fa-heart mx-1 my-1", data:{method:"DELETE"} %>
+              <%end%>
+            <%else%>
+              <%= link_to "", gossip_like_index_path(t.id), class:"far fa-heart mx-1 my-1", data:{method:"POST"} %>
+            <%end%>
+      <% end %>
      <% t.tag.each do |e|%>
      <a href="#" class="badge badge-primary"><%= e.title%></a>
+     
+     
 
     <% end %>
     </div>
