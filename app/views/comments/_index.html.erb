@@ -1,13 +1,15 @@
-<div class="container">
-	<hr>
-  <% @gossip.comment.each do |t|%>
-	<div class="row comment">
-	    <div class="head">
-	        <small><strong class='user'><%= User.find(t.user_id).first_name %> <%= User.find(t.user_id).first_name %>:  </strong></small>
-	    </div>    
-	    <p><%= t.content%></p>
-      <%= link_to "edit ce commentaire", edit_gossip_comment_url(@gossip.id, t.id)%>
-	</div>
-	<hr>
-  <% end %>
-</div>
+	  
+		<% @gossip.comment.each do |t|%>
+
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title"><%= t.user.first_name %> <%= t.user.last_name%></h5>
+      <p class="card-text"><%= t.content%></p>
+			<% if t.user_id == current_user.id%>
+      <p class="card-text"><small class="text-muted"><%= link_to "edit ce commentaire", edit_gossip_comment_url(@gossip.id, t.id)%>
+</small></p>
+<% end %>
+    </div>
+  </div>
+
+<% end %>

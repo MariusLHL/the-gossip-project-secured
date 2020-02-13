@@ -33,12 +33,6 @@
               <span class="sr-only">(current)</span>
             </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/team">La team</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/contact">Contact</a>
-                    </li>
                     <% if session[:user_id] != nil%>
                                         <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -46,9 +40,9 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-                                  <a class="dropdown-item" href="#">Parametre </a>
+                                        <%= link_to "Profile", current_user,  class:"dropdown-item"%>
                                                                   <div class="dropdown-divider"></div>
-                                        <%= link_to "Se deconnecter", sessions_controller_path(session[:user_id]), class:"dropdown-item active", method:"DELETE"%>
+                                        <%= link_to "Se deconnecter", sessions_controller_path(session[:user_id]), class:"dropdown-item danger", method:"DELETE"%>
 
                             </div>
                     </li>
