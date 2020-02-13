@@ -1,8 +1,12 @@
-require 'faker'
-
 class UserController < ApplicationController
   before_action :authenticate_user, only: [:show]
 
+  def new
+    if current_user
+      redirect_to '/'
+    end
+  end
+  
   def index
     @user = User.all
   end

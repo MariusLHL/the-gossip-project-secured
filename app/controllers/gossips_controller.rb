@@ -11,6 +11,7 @@ class GossipsController < ApplicationController
   def show
       id = params[:id].to_i
       @gossip = Gossip.find(id)
+      @like = @gossip.likes
       @tag = Gossip.find(id).tag
       @tags = Tag.all
       @author = User.find(@gossip.user_id)

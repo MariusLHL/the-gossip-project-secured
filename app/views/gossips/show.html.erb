@@ -30,6 +30,13 @@
         <% @tag.each do |y|%>
     <span class="badge badge-primary"> <%= y.title%></span>
       <%end%>
+      <p><%= @like.count%></p>
+      <% if @like.find_by(user_id: current_user.id)%>
+            <%= link_to "",   gossip_like_path(params[:id], @like.find_by(user_id: current_user.id).id) ,method: "DELETE",class: "fas fa-heart", style: "color: black;text-decoration: none;"%>
+        <% else %>
+            <%= link_to "",   gossip_like_index_path(params[:id]) ,method: "POST",class: "far fa-heart", style: "color: black;text-decoration: none;"%>
+
+      <% end %>
   </div>
 </div>
  
