@@ -1,24 +1,10 @@
-# README
+# The gossip project
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Configuration
+- faire un ```git clone git@github.com:notmoebius/sem5j1.git```
+- ```cd rep_rails_du_projet```
+- ```rm Gemfile.lock``` puis
+- ```bundle install```
+- faire un ```rails db:create``` pour la BDD
+- faire un ```rails db:migrate```pour créer les tables de la BDD
+- faire un ```rails db:seed```pour alimenter la BDD avec un jeu d'essai.
