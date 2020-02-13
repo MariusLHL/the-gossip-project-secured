@@ -20,6 +20,7 @@ class GossipsController < ApplicationController
   end
 
   def new
+    @city = City.all
     @goss = Gossip.new
   end
 

@@ -6,13 +6,17 @@ class UserController < ApplicationController
     if current_user
       redirect_to '/'
     end
+    @user = User.new
   end
   
   def index
+    
     @user = User.all
   end
   
   def create
+    @city = City.all
+
       @user = User.new(first_name: params[:first_name],
                        last_name: params[:last_name],
                        description: params[:content],
@@ -25,13 +29,14 @@ class UserController < ApplicationController
         session[:user_id] = @user.id
         redirect_to '/'
       else
-        puts params[:city]
-          puts @user.errors.to_s 
-          @user.errors
-      end
+          @error = @user.errors
+          render 'new'
+        end
   end
 
   def show
+    @city = City.all
+
       @user = User.find(params[:id])
       @pic = Faker::Avatar.image
   end
