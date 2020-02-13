@@ -2,16 +2,16 @@
 <table class="table table-sm">
   <thead>
     <tr>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
+      <th scope="col">Nom</th>
+      <th scope="col"></th>
+      <th scope="col">Lien</th>
     </tr>
   </thead>
   <tbody>
   <% @city.each do |t| %>
     <tr>
       <td><%= t.name%></td>
-      <td>Otto</td>
+      <td></td>
       <td><%= link_to "voir ville", "city/#{t.id}/"%></td>
     </tr>
     <%end%>

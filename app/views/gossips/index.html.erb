@@ -11,17 +11,18 @@
 <% end %>
 
  <% if session[:user_id] != nil%>
-<h2>Bienvenue <%= User.find_by(id: session[:user_id]).first_name %> !</h2>
+<h2>Bienvenue <%= @user%> !</h2>
 <% end %> 
  <% if session[:user_id ] != nil%>
 
   <form>
       <br>
   <div class="form-group d-flex flex-row-reverse">
-    <a href="/gossips/new" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Creer un gossip</a>
+    <%= link_to "Creer un gossip", new_gossip_path, class: "btn btn-primary btn-lg active"%>
   </div>
 </form>
 <% end %>
+
         
         
         <% @gossips.each do |t |%>

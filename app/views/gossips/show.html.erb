@@ -1,9 +1,13 @@
 <form style="width: 60rem;">
   <br>
   <div class="form-group d-flex justify-content-between">
+    <% if @gossip.user_id == session[:user_id]%>
       <%= link_to "Supprimer", gossip_path(@gossip.id), class:"btn btn-danger", method:"DELETE"%>
+    <% end %>
+        <% if @gossip.user_id == session[:user_id]%>
 
     <%= link_to "Modifier ce gossips",  edit_gossip_path(params[:id]), class: "btn btn-primary btn-lg active"%>
+        <% end %>
   </div>
 </form>
 <div class="card" style="width: 60rem;">

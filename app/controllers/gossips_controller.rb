@@ -1,22 +1,21 @@
 class GossipsController < ApplicationController
+  before_action :authenticate_user, only: [:update, :create, :new, :edit, :show]
 
   def index
+    if current_user
+      @user = User.find_by(id: session[:user_id]).first_name
+    end
     @gossips = Gossip.all
   end
 
   def show
-    if session[:user_id] != nil
       id = params[:id].to_i
       @gossip = Gossip.find(id)
       @tag = Gossip.find(id).tag
+      @tags = Tag.all
       @author = User.find(@gossip.user_id)
       @link = @author.id
       @comment = Comment.new
-    else
-      @gossips = Gossip.all
-      @error = "You must be logged in to see this page"
-      render :index
-    end
   end
 
   def new
@@ -38,6 +37,9 @@ class GossipsController < ApplicationController
 
   def edit
     @goss = Gossip.find(params[:id].to_i)
+    if @goss.user_id != current_user.id
+      redirect_to '/'
+    end
   end
 
   def update
@@ -52,10 +54,17 @@ class GossipsController < ApplicationController
 
   def destroy
     @gossip = Gossip.find(params[:id])
-    if @gossip.destroy
-      redirect_to "/"
+    if current_user.id == @gossip.user_id
+      if @gossip.destroy
+        redirect_to "/"
+      else
+        @error = "Erreur inconnu"
+        render :show
+      end
     else
-      render :show
+      @gossips = Gossip.all
+      @error = "Vous ne pouvez pas supprimer ce gossip"
+      render :index
     end
   end
 end
