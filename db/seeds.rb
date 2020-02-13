@@ -31,14 +31,6 @@ end
  Gossip.create(title: Faker::Lorem.word, content: Faker::Lorem.paragraph, user_id: Faker::Number.within(range: User.first.id..User.last.id))
 end
 
-5.times do
- # Tag.create(title: Faker::Lorem.word )
-end
-
-15.times do
- # JoinTag.create(tag_id: Faker::Number.within(range: Tag.first.id..Tag.last.id), gossip_id: Faker::Number.within(range: Gossip.first.id..Gossip.last.id))
-end
-
 100.times do
-  Comment.create(content:  Faker::Number.within(range: User.first.id..User.last.id))
+  Comment.create(content: Faker::Lorem.paragraph,user_id: Faker::Number.within(range: User.first.id..User.last.id),gossip_id: Faker::Number.within(range: Gossip.first.id..Gossip.last.id))
 end
