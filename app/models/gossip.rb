@@ -5,4 +5,5 @@ class Gossip < ApplicationRecord
   has_many :likes, as: :content
   validates :title, 
     length: { in: 3..14}
+  belongs_to :user
 end

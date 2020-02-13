@@ -32,36 +32,26 @@
       <div class="col">
           <%= label_tag 'Mot de passe' %>
 
-      <%= text_field_tag 'password', "", class: "form-control" %>
+      <%= text_field_tag 'password', "", class: "form-control", type: "password" %>
     </div>
           <div class="col">
           <%= label_tag 'Verifier le mot de passe' %>
 
-      <%= text_field_tag 'password_verif', "", class: "form-control" %>
+      <%= text_field_tag 'confirm', "", class: "form-control", type: "password" %>
     </div>
   </div>
   <div class="row">
     <div class="col">
               <%= label_tag 'City' %>
-
-      <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-        <option selected>Choose...</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
-      </select>
+              <%= select_tag "city", options_from_collection_for_select(@city, "id", "name"), class: "custom-select mr-sm-2"%>
     </div>
 
         <div class="col">
                       <%= label_tag 'Age' %>
 
-      <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-        <option selected>Choose...</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
-      </select>
-    </div>
+                            <%= select_tag "age", options_for_select(1..100),class: "custom-select mr-sm-2" %>
+
+    </div>  
   </select>
   </div>
         <%= label_tag 'Body' %>

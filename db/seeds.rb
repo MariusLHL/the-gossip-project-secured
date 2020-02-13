@@ -19,12 +19,16 @@ Comment.destroy_all
   City.create(name: Faker::Address.city, zip_code: Faker::Address.zip_code)
 end
 
+user = User.create(first_name:Faker::Name.first_name  , last_name: Faker::Name.last_name , description: Faker::Quote.famous_last_words , email: 'admin@admin.fr', age: rand(18..78), city_id: Faker::Number.within(range: City.first.id..City.last.id), password: "password")
+
+
 10.times do
- User.create(first_name:Faker::Name.first_name  , last_name: Faker::Name.last_name , description: Faker::Quote.famous_last_words , email: Faker::Internet.email, age: rand(18..78), city_id: Faker::Number.within(range: City.first.id..City.last.id))
+ user = User.create(first_name:Faker::Name.first_name  , last_name: Faker::Name.last_name , description: Faker::Quote.famous_last_words , email: Faker::Internet.email, age: rand(18..78), city_id: Faker::Number.within(range: City.first.id..City.last.id), password: "password")
+  user.errors
 end
 
 20.times do
- #Gossip.create(title: Faker::Lorem.word, content: Faker::Lorem.paragraph, user_id: Faker::Number.within(range: User.first.id..User.last.id))
+ Gossip.create(title: Faker::Lorem.word, content: Faker::Lorem.paragraph, user_id: Faker::Number.within(range: User.first.id..User.last.id))
 end
 
 5.times do
@@ -36,5 +40,5 @@ end
 end
 
 100.times do
-  #Comment.create(content:  Faker::Lorem.paragraph, user_id: User.first.id, gossip_id: Faker::Number.within(range: Gossip.first.id..Gossip.last.id))
+  Comment.create(content:  Faker::Number.within(range: User.first.id..User.last.id))
 end

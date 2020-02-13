@@ -2,11 +2,13 @@ class SessionsControllerController < ApplicationController
   include SessionsControllerHelper
  
   def new
-
+    User.new
+    puts params[:email]
   end
   
   def create
     my_user = User.find_by(email: params[:email])
+    puts params[:email]
 
     if my_user != nil && my_user.authenticate(params[:password]) 
       puts "yes"
