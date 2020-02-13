@@ -15,3 +15,7 @@
 
 ## Objectif du projet
 Ce propjet consisten en un mini reseaux social
+
+## Demo live
+
+https://the-gossip-projects.herokuapp.com/
