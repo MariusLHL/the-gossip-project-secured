@@ -1,0 +1,16 @@
+<h1 class="text-center"> <%= @city.name %></h1>
+<% @city.users.each do |goss|%>
+  <% goss.gossips.each do |t|%>
+      <div class="card">
+    <div class="card-body">
+    <h5 class="card-title"><%= t.title %></h5>
+    <p class="card-text"><%= t.content %></p>
+     <% t.tag.each do |e|%>
+     <a href="#" class="badge badge-primary"><%= e.title%></a>
+
+    <% end %>
+    </div>
+    </div>
+    <br>
+  <% end %>
+<%end%>

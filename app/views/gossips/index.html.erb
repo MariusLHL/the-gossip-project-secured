@@ -1,0 +1,45 @@
+ <% if @error != nil%>
+ <br>
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>Error:</strong> <%= @error%>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+
+<% end %>
+
+ <% if session[:user_id] != nil%>
+<h2>Bienvenue <%= User.find_by(id: session[:user_id]).first_name %> !</h2>
+<% end %> 
+ <% if session[:user_id ] != nil%>
+
+  <form>
+      <br>
+  <div class="form-group d-flex flex-row-reverse">
+    <a href="/gossips/new" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Creer un gossip</a>
+  </div>
+</form>
+<% end %>
+        
+        
+        <% @gossips.each do |t |%>
+
+    <br>
+    <div class="card">
+    <div class="card-body">
+    <h5 class="card-title"><%= t.title %></h5>
+    <p class="card-text"><%= t.content %></p>
+    <p class="card-text"><small class="text-muted"><%= User.find(t.user_id).first_name %> <%= User.find(t.user_id).last_name %></small></p>
+     <%= link_to "clique ici pour acceder au gossip", Gossip.find(t.id), class: "card_link text-right"%>
+     <% t.tag.each do |e|%>
+     <a href="#" class="badge badge-primary"><%= e.title%></a>
+     <% end %>
+
+    </div>
+
+    </div>
+                  <% end %>
+                      <br>
+

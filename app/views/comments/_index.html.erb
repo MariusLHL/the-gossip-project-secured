@@ -1,0 +1,13 @@
+<div class="container">
+	<hr>
+  <% @gossip.comment.each do |t|%>
+	<div class="row comment">
+	    <div class="head">
+	        <small><strong class='user'><%= User.find(t.user_id).first_name %> <%= User.find(t.user_id).first_name %>:  </strong></small>
+	    </div>    
+	    <p><%= t.content%></p>
+      <%= link_to "edit ce commentaire", edit_gossip_comment_url(@gossip.id, t.id)%>
+	</div>
+	<hr>
+  <% end %>
+</div>

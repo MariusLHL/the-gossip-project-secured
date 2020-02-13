@@ -1,0 +1,20 @@
+
+<table class="table table-sm">
+  <thead>
+    <tr>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Handle</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @city.each do |t| %>
+    <tr>
+      <td><%= t.name%></td>
+      <td>Otto</td>
+      <td><%= link_to "voir ville", "city/#{t.id}/"%></td>
+    </tr>
+    <%end%>
+
+  </tbody>
+</table>

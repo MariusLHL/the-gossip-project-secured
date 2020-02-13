@@ -1,0 +1,36 @@
+<form style="width: 60rem;">
+  <br>
+  <div class="form-group d-flex justify-content-between">
+      <%= link_to "Supprimer", gossip_path(@gossip.id), class:"btn btn-danger", method:"DELETE"%>
+
+    <%= link_to "Modifier ce gossips",  edit_gossip_path(params[:id]), class: "btn btn-primary btn-lg active"%>
+  </div>
+</form>
+<div class="card" style="width: 60rem;">
+  <div class="card-body">
+    <h5 class="card-title"><%= @gossip.title %></h5>
+    <p class="card-text"><%= @gossip.content %></p>
+    <p>
+    Auteur:
+    <a class="card-text" href="/user/<%= @link%>">
+    <%= @author.first_name %>
+    <%= @author.last_name %>
+
+    </a>
+    </p>
+    <br>
+    <p>
+    Ville:
+    <%= link_to @author.city.name, @author.city %>
+    </p>
+        <% @tag.each do |y|%>
+    <span class="badge badge-primary"> <%= y.title%></span>
+      <%end%>
+  </div>
+</div>
+ 
+    <br>
+    <p>Commentaire(<%= @gossip.comment.count%>)</p>
+    <hr>
+     <%= render 'comments/new'%>
+     <%= render 'comments/index'%>
